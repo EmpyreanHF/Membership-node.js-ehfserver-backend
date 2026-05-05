@@ -42,6 +42,9 @@ function bioRow(label, value) {
 app.get("/",       (_req, res) => res.send("EHF Membership Service — Online"));
 app.get("/status", (_req, res) => res.send("Service is running fine"));
 
+// ── /ping — lightweight keep-alive for UptimeRobot (prevents Render free-tier spin-down) ──
+app.get("/ping",   (_req, res) => res.status(200).json({ status: "ok", ts: Date.now() }));
+
 // ─────────────────────────────────────────────────────────────────
 //  /config  — serves all API keys/config to the frontend securely
 //  Called by index.html on page load via loadEHFConfig()
